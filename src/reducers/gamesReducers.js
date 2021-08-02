@@ -1,5 +1,5 @@
 const initState = {
-  pouplar: [],
+  popular: [],
   newGame: [],
   upGame: [],
 };
@@ -7,7 +7,7 @@ const initState = {
 const gameReducer = (state = initState, action) => {
   switch (action.type) {
     case "FATCH_GAME":
-      return { ...state };
+      return { ...state, popular : action.paylode.popular };
     default:
       return { ...state };
   }
