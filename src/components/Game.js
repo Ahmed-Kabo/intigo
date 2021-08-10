@@ -19,9 +19,10 @@ const GameSection = styled(motion.div)`
   border-radius: 1rem;
   overflow: hidden;
   box-shadow: 0 10px 20px rgb(0 0 0 / 9%);
+  text-align: center;
 `;
 const ImageContainer = styled(motion.div)`
-  height: 30vh;
+  height: 35vh;
   position: relative;
   img {
     width: 100%;
