@@ -7,7 +7,9 @@ const GlobalStyles = createGlobalStyle`
     margin: 0;
     box-sizing: border-box;
 }
+
 html{
+    --main : #78c7c2;
     &::-webkit-scrollbar{
         width: .8rem;
         height: 100px;
@@ -36,7 +38,7 @@ h2{
         width: 5%;
         height: 20px;
         z-index: -1;
-        background:#78c7c2 ;
+        background:var(--main) ;
     }
 }
 

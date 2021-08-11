@@ -1,9 +1,14 @@
 import { motion } from "framer-motion";
 import styled from "styled-components";
-
-const Game = ({ img, name, released }) => {
+import { loadDetails } from "../actions/gamedDeatails";
+import { useDispatch } from "react-redux";
+const Game = ({ img, name, released, id }) => {
+  const dispatch = useDispatch();
+  const showDetailHandler = () => {
+    dispatch(loadDetails(id));
+  };
   return (
-    <GameSection>
+    <GameSection onClick={showDetailHandler}>
       <ImageContainer>
         <img src={img} alt={name} />
         <div className="img-overlay"></div>
