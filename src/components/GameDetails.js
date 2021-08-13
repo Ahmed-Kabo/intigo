@@ -9,18 +9,20 @@ const GameDetail = () => {
     <CardShadow>
       <CardDetails>
         <div className="stats">
-          <div className="rating">
-            <h3>{game.name}</h3>
-            <p>Rating : {game.rating}</p>
-          </div>
-          <div className="info">
-            <h3>platforms</h3>
-            <div className="platforms">
-              {game.platforms.map((data) => (
-                <h3 key={data.platform.id}>{data.platform.name}</h3>
-              ))}
+          <Stats>
+            <div className="rating">
+              <h3>{game.name}</h3>
+              <p>Rating : {game.rating}</p>
             </div>
-          </div>
+            <Info>
+              <h3>platforms</h3>
+              <div className="platforms">
+                {game.platforms.map((data) => (
+                  <h4 key={data.platform.id}>{data.platform.name}</h4>
+                ))}
+              </div>
+            </Info>
+          </Stats>
           <div className="media">
             <img src={game.background_image} alt={game.background_image} />
           </div>
@@ -49,6 +51,10 @@ const CardShadow = styled(motion.div)`
   overflow-x: hidden;
   background: rgba(0, 0, 0, 0.5);
 
+  p {
+    margin: 1.5rem 0;
+  }
+
   &::-webkit-scrollbar-thumb {
     background-color: #bc89ff;
     border-radius: 3rem;
@@ -57,12 +63,12 @@ const CardShadow = styled(motion.div)`
     width: 0.5rem;
   }
   &::-webkit-scrollbar-track {
-    background: #fff;
+    background: #4d4d4d;
   }
 `;
 const CardDetails = styled(motion.div)`
   width: 80%;
-  padding: 5rem 15rem;
+  padding: 5rem 5rem;
   margin: 5rem auto;
   border-radius: 2rem;
   background-color: #fff;
@@ -71,4 +77,26 @@ const CardDetails = styled(motion.div)`
   }
 `;
 
+const Stats = styled(motion.div)`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const Info = styled(motion.div)`
+  text-align: center;
+  h3 {
+    text-transform: capitalize;
+    margin-bottom: 1rem;
+  }
+  .platforms {
+    display: flex;
+    margin-bottom: 1.5rem;
+
+    h4 {
+      margin-inline: 0.6rem;
+      font-weight: lighter;
+    }
+  }
+`;
 export default GameDetail;

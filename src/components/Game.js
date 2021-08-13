@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import styled from "styled-components";
 import { loadDetails } from "../actions/gamedDeatails";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+
 const Game = ({ img, name, released, id }) => {
   const dispatch = useDispatch();
   const showDetailHandler = () => {
@@ -9,12 +11,14 @@ const Game = ({ img, name, released, id }) => {
   };
   return (
     <GameSection onClick={showDetailHandler}>
-      <ImageContainer>
-        <img src={img} alt={name} />
-        <div className="img-overlay"></div>
-      </ImageContainer>
-      <h3>{name}</h3>
-      <p>{released}</p>
+      <Link to={`/game/${id}`}>
+        <ImageContainer>
+          <img src={img} alt={name} />
+          <div className="img-overlay"></div>
+        </ImageContainer>
+        <h3>{name}</h3>
+        <p>{released}</p>
+      </Link>
     </GameSection>
   );
 };
