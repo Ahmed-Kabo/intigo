@@ -1,42 +1,57 @@
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import { useHistory } from "react-router-dom";
 
 const GameDetail = () => {
-  const { game, screen } = useSelector((state) => state.detail);
+  const history = useHistory();
+  const exitDetailHandelar = (e) => {
+    const element = e.target;
+    if (element.classList.contains("shadow")) {
+      document.body.style.overflow = "auto";
+      history.push("/");
+    }
+  };
+
+  //datat
+  const { game, screen, isLoading } = useSelector((state) => state.detail);
 
   return (
-    <CardShadow>
-      <CardDetails>
-        <div className="stats">
-          <Stats>
-            <div className="rating">
-              <h3>{game.name}</h3>
-              <p>Rating : {game.rating}</p>
-            </div>
-            <Info>
-              <h3>platforms</h3>
-              <div className="platforms">
-                {game.platforms.map((data) => (
-                  <h4 key={data.platform.id}>{data.platform.name}</h4>
+    <>
+      {!isLoading && (
+        <CardShadow className="shadow" onClick={exitDetailHandelar}>
+          <CardDetails>
+            <div className="stats">
+              <Stats>
+                <div className="rating">
+                  <h3>{game.name}</h3>
+                  <p>Rating : {game.rating}</p>
+                </div>
+                <Info>
+                  <h3>platforms</h3>
+                  <div className="platforms">
+                    {game.platforms.map((data) => (
+                      <h4 key={data.platform.id}>{data.platform.name}</h4>
+                    ))}
+                  </div>
+                </Info>
+              </Stats>
+              <div className="media">
+                <img src={game.background_image} alt={game.background_image} />
+              </div>
+              <div className="description">
+                <p>{game.description_raw}</p>
+              </div>
+              <div className="gallery">
+                {screen.results.map((screen) => (
+                  <img src={screen.image} alt={screen.image} />
                 ))}
               </div>
-            </Info>
-          </Stats>
-          <div className="media">
-            <img src={game.background_image} alt={game.background_image} />
-          </div>
-          <div className="description">
-            <p>{game.description_raw}</p>
-          </div>
-          <div className="gallery">
-            {screen.results.map((screen) => (
-              <img src={screen.image} alt={screen.image} />
-            ))}
-          </div>
-        </div>
-      </CardDetails>
-    </CardShadow>
+            </div>
+          </CardDetails>
+        </CardShadow>
+      )}
+    </>
   );
 };
 

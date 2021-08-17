@@ -53,6 +53,12 @@ p{
     color: #777;
 }
 
+a{
+    text-decoration: none;
+}
+img{
+    display: block;
+}
 
 
 
